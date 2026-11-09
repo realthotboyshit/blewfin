@@ -3,10 +3,10 @@
 # image will be published to ghcr.io/<user>/<name>
 name: blewfin
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: This is my personal OS image based on Project Bluefin.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
+base-image: ghcr.io/ublue-os/bluefin
 image-version: latest # You can pin to a specific version of Fedora as well
 
 # module configuration, executed in order
@@ -21,10 +21,17 @@ modules:
     repos:
       copr:
         - atim/starship
+        - scottames/ghostty
     install:
       packages:
         - micro
         - starship
+        - ghostty
+        - fish
+        - gh
+        - git
+        - android-tools
+        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-beta-158.0.8127.18-1.x86_64.rpm
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -38,7 +45,10 @@ modules:
         scope: system
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
+          - com.surfshark.Surfshark
+          - io.github.debasish_patra_1987.linuxthemestore
+          - io.github.Foldex.AdwSteamGtk
+          - io.github.ecotubehq.player
           - org.gnome.Loupe
       - scope: user # Also add Flathub user repo, but no user packages
 
